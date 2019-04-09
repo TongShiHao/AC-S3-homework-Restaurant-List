@@ -1,6 +1,13 @@
 ## AC S3 Homework
 
-**Restaurant List**
+## Restaurant List
+
+**如何使用**
+1. clone 專案
+2. 開啟終端機(Terminal)到存放專案的資料夾
+3. 輸入 npm install
+4. 輸入 nodemon app.js
+5. 開啟瀏覽器輸入http://localhost:3000
 
 **1. 使用者可以在首頁看到所有餐廳與它們的簡單資料：**
    + 餐廳照片
