@@ -15,7 +15,6 @@ db.once('open', () => {
   restaurants.create(
     [
       {
-        "id": 1,
         "name": "Sababa 沙巴巴中東美食",
         "name_en": "Sababa Pita Bar",
         "category": "中東料理",

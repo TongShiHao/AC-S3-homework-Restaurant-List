@@ -56,11 +56,11 @@ app.post('/restaurants', (req, res) => {
 })
 
 //取得餐廳詳細資料
-app.get('/restaurants/:restaurants_id', (req, res) => {
-  const restaurant = restaurantsList.results.filter(function (restaurant) {
-    return restaurant.id == req.params.restaurants_id
+app.get('/restaurants/:id', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.log(err)
+    return res.render('detail', { restaurants: restaurant })
   })
-  res.render('show', { restaurant: restaurant[0] })
 })
 
 //修改餐廳資訊的頁面
