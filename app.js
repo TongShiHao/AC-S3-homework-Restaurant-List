@@ -1,11 +1,10 @@
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
-const restaurantsList = require('./restaurant.json')
 const port = 3000
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/restaurant')
+mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
 
 const db = mongoose.connection
 
@@ -17,7 +16,7 @@ db.once('open', () => {
   console.log('mongodb connecting!')
 })
 
-const restaurants = require('./models/restaurant')
+const Restaurant = require('./models/restaurant')
 
 app.use(express.static('public'))
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -25,7 +24,15 @@ app.set('view engine', 'handlebars')
 
 //取得所有餐廳
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantsList.results })
+  Restaurant.find((err, restaurant) => {
+    if (err) return console.log(err)
+    return res.render('index', { restaurants: restaurant })
+  })
+})
+
+//新增餐廳的頁面
+app.get('/restaurants/new', (req, res) => {
+  res.send('新增餐廳')
 })
 
 //取得餐廳詳細資料
@@ -34,11 +41,6 @@ app.get('/restaurants/:restaurants_id', (req, res) => {
     return restaurant.id == req.params.restaurants_id
   })
   res.render('show', { restaurant: restaurant[0] })
-})
-
-//新增餐廳的頁面
-app.get('/restaurants/new', (req, res) => {
-  res.render('新增餐廳')
 })
 
 //新增餐廳

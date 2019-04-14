@@ -35,6 +35,13 @@ header {
   color: #9b4b4b;
 }
 
+.creat-btn {
+  height: 50px;
+  width: 150px;
+  font-size: 35px;
+  margin: 0 20rem;
+}
+
 .form-control::placeholder {
   color: #aaaaaa;
   font-size: 0.8rem;
