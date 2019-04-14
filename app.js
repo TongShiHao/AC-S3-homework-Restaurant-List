@@ -92,18 +92,32 @@ app.post('/restaurants/:id', (req, res) => {
 })
 
 //刪除餐廳資訊
-app.post('/restaurants/:restaurants_id/delete', (req, res) => {
-  res.render('刪除餐廳')
+app.post('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.log(err)
+    restaurant.remove(err => {
+      if (err) return console.log(err)
+      return res.redirect('/')
+    })
+  })
 })
 
 //搜尋餐廳
-app.get('/search', (req, res) => {
-  console.log('query.keyword', req.query.keyword)
-  const restaurants = restaurantsList.results.filter(function (restaurants) {
-    return restaurants.name.toLowerCase().includes(req.query.keyword.toLowerCase())
+app.get("/search", (req, res) => {
+  const keyword = req.query.keyword
+  Restaurant.find({
+    name: {
+      $regex: keyword,
+      $options: 'i'
+    }
+  }, (err, restaurant) => {
+    if (err) return console.error(err)
+    return res.render('index', {
+      restaurants: restaurant
+    })
   })
-  res.render('index', { restaurants: restaurants, keyword: req.query.keyword })
 })
+
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)

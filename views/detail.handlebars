@@ -40,6 +40,10 @@
         <span class="btn btn-outline-primary btn-lg btn-block mb-2">修改資料</span>
       </a>
 
+      <form action="/restaurants/{{{ restaurants.id }}}/delete" method="POST" style="display: inline;">
+        <button class="btn btn-outline-danger btn-lg btn-block mb-2" type="submit">刪除</button>
+      </form>
+
       <a class="puts" href="/">
         <span class="btn btn-outline-primary btn-lg btn-block mb-5">回到首頁</span>
       </a>

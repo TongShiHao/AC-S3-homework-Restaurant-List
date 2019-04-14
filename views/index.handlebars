@@ -26,7 +26,7 @@
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
+    <div class="col-12">
       <div class="card-columns">
 
         {{#each restaurants}}
@@ -50,7 +50,9 @@
 
             <a class="btn btn-outline-primary btn-lg btn-block mb-2" href="/restaurants/{{{ this.id }}}">了解更多</a>
             <a class="btn btn-outline-primary btn-lg btn-block mb-2" href="/restaurants/{{{ this.id }}}/edit">修改資料</a>
-            <button class="btn btn-outline-danger btn-lg btn-block mb-2" type="submit">刪除</button>
+            <form action="/restaurants/{{{this.id}}}/delete" method="POST" style="display: inline;">
+              <button class="btn btn-outline-danger btn-lg btn-block mb-2" type="submit">刪除</button>
+            </form>
 
           </div>
         </div>
