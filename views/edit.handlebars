@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <form action="/restaurants/{{{restaurants.id}}}" method="POST">
+    <div class="row mb-3">
+      <input class="puts col-6" type="text" placeholder="餐廳名字" name="name" value="{{{restaurants.name}}}">
+      <input class="puts col-6" type="text" placeholder="料理類別" name="category" value="{{{restaurants.category}}}">
+    </div>
+    <div class="row mb-3">
+      <input class="puts col-6" type="text" placeholder="圖片網址" name="image" value="{{{restaurants.image}}}">
+      <input class="puts col-6" type="text" placeholder="Google地圖網址" name="google_map"
+        value="{{{restaurants.google_map}}}">
+    </div>
+    <div class="row mb-3">
+      <input class="puts col-4" type="text" placeholder="電話" name="phone" value="{{{restaurants.phone}}}">
+      <input class="puts col-4" type="text" placeholder="地址" name="location" value="{{{restaurants.location}}}">
+      <input class="puts col-4" type="text" placeholder="評價" name="rating" value="{{{restaurants.rating}}}">
+    </div>
+    <div class="row mb-3">
+      <input class="puts col-12" type="text" placeholder="描述" name="description" value="{{{restaurants.description}}}">
+    </div>
+    <div class="row  justify-content-between">
+      <button class="puts  btn-outline-success col-2" type="submit">確定修改</button>
+      <a class="puts" href="/restaurants/{{{restaurants.id}}}">
+        <span class="btn btn-outline-primary">取消</span>
+      </a>
+    </div>
+  </form>
+</div>

@@ -64,13 +64,31 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 //修改餐廳資訊的頁面
-app.get('/restaurants/:restaurants_id/edit', (req, res) => {
-  res.render('修改餐廳')
+app.get('/restaurants/:id/edit', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.log(err)
+    return res.render('edit', { restaurants: restaurant })
+  })
 })
 
 //修改餐廳
-app.post('/restaurants/:restaurants_id', (req, res) => {
-  res.render('/修改餐廳資訊')
+app.post('/restaurants/:id', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.log(err)
+    restaurant.name = req.body.name
+    restaurant.category = req.body.category
+    restaurant.image = req.body.image
+    restaurant.google_map = req.body.google_map
+    restaurant.phone = req.body.phone
+    restaurant.location = req.body.location
+    restaurant.rating = req.body.rating
+    restaurant.description = req.body.description
+
+    restaurant.save(err => {
+      if (err) return console.log(err)
+      return res.redirect(`/restaurants/${req.params.id}`)
+    })
+  })
 })
 
 //刪除餐廳資訊
