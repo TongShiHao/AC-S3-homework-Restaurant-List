@@ -25,100 +25,10 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(methodOverride('_method'))
 
-//取得所有餐廳
-app.get('/', (req, res) => {
-  Restaurant.find((err, restaurant) => {
-    if (err) return console.log(err)
-    return res.render('index', { restaurants: restaurant })
-  })
-})
-
-//新增餐廳的頁面
-app.get('/restaurants/new', (req, res) => {
-  res.render('new')
-})
-
-//新增餐廳
-app.post('/restaurants', (req, res) => {
-  const restaurant = Restaurant({
-    name: req.body.name,
-    category: req.body.category,
-    image: req.body.image,
-    google_map: req.body.google_map,
-    phone: req.body.phone,
-    location: req.body.location,
-    rating: req.body.rating,
-    description: req.body.description,
-  })
-
-  restaurant.save(err => {
-    if (err) return console.log(err)
-    return res.redirect('/')
-  })
-})
-
-//取得餐廳詳細資料
-app.get('/restaurants/:id', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.log(err)
-    return res.render('detail', { restaurants: restaurant })
-  })
-})
-
-//修改餐廳資訊的頁面
-app.get('/restaurants/:id/edit', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.log(err)
-    return res.render('edit', { restaurants: restaurant })
-  })
-})
-
-//修改餐廳
-app.put('/restaurants/:id', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.log(err)
-    restaurant.name = req.body.name
-    restaurant.category = req.body.category
-    restaurant.image = req.body.image
-    restaurant.google_map = req.body.google_map
-    restaurant.phone = req.body.phone
-    restaurant.location = req.body.location
-    restaurant.rating = req.body.rating
-    restaurant.description = req.body.description
-
-    restaurant.save(err => {
-      if (err) return console.log(err)
-      return res.redirect(`/restaurants/${req.params.id}`)
-    })
-  })
-})
-
-//刪除餐廳資訊
-app.delete('/restaurants/:id/delete', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.log(err)
-    restaurant.remove(err => {
-      if (err) return console.log(err)
-      return res.redirect('/')
-    })
-  })
-})
-
-//搜尋餐廳
-app.get("/search", (req, res) => {
-  const keyword = req.query.keyword
-  Restaurant.find({
-    name: {
-      $regex: keyword,
-      $options: 'i'
-    }
-  }, (err, restaurant) => {
-    if (err) return console.error(err)
-    return res.render('index', {
-      restaurants: restaurant
-    })
-  })
-})
+//Routes
+app.use('/', require('./routes/homepage'))
+app.use('/restaurants', require('./routes/restaurants'))
+app.use('/search', require('./routes/search'))
 
 
 app.listen(port, () => {
