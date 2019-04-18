@@ -2,19 +2,7 @@
 
 ## Restaurant List
 
-**如何使用**
-1. clone 專案
-2. 開啟終端機(Terminal)到存放專案的資料夾
-3. 輸入 npm install
-4. 輸入 nodemon app.js
-5. 開啟瀏覽器輸入http://localhost:3000
-
-<<<<<<< HEAD
-將你有興趣的美食餐廳，填入訊息後呈現出來的網站。
-
 ## Installing
-
-如何下載並啟動專案
 
 1. 點選 `Clone With HTTP` 複製 `<URL>`
 1. 開啟終端機輸入 `git clone <URL>`。
@@ -29,8 +17,6 @@
 1. 網頁即可運作並執行動作。
 
 ## Features
-
-特點
 
 - 可瀏覽全部的餐廳
 
@@ -49,19 +35,3 @@
 - [Express](https://expressjs.com/zh-tw/starter/installing.html) - Node.js web framework
 - [Handlebars](https://www.npmjs.com/package/express-handlebars) - Template Engine
 - [Mongoose](https://www.npmjs.com/package/mongoose) - MongoDB Model
-=======
-**1. 使用者可以在首頁看到所有餐廳與它們的簡單資料：**
-   + 餐廳照片
-   + 餐廳名稱
-   + 餐廳分類
-   + 餐廳評分
-
-**2. 使用者可以再點進去看餐廳的詳細資訊：**
-   + 類別
-   + 地址
-   + 電話
-   + 描述
-   + 圖片
-
-**3. 使用者可以透過搜尋餐廳名稱來找到特定的餐廳**
->>>>>>> 0298288c5e60bffccc562389bf5740a73142ecc2
