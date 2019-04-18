@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const port = 3000
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
 
@@ -22,6 +23,7 @@ const Restaurant = require('./models/restaurant')
 app.use(express.static('public'), bodyParser.urlencoded({ extended: true }))
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(methodOverride('_method'))
 
 //取得所有餐廳
 app.get('/', (req, res) => {
@@ -72,7 +74,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 //修改餐廳
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.log(err)
     restaurant.name = req.body.name
@@ -92,7 +94,7 @@ app.post('/restaurants/:id', (req, res) => {
 })
 
 //刪除餐廳資訊
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id/delete', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.log(err)
     restaurant.remove(err => {

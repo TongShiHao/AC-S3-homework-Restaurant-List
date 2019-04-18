@@ -50,7 +50,7 @@
 
             <a class="btn btn-outline-primary btn-lg btn-block mb-2" href="/restaurants/{{{ this.id }}}">了解更多</a>
             <a class="btn btn-outline-primary btn-lg btn-block mb-2" href="/restaurants/{{{ this.id }}}/edit">修改資料</a>
-            <form action="/restaurants/{{{this.id}}}/delete" method="POST" style="display: inline;">
+            <form action="/restaurants/{{{this.id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
               <button class="btn btn-outline-danger btn-lg btn-block mb-2" type="submit">刪除</button>
             </form>
 

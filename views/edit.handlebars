@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <form action="/restaurants/{{{restaurants.id}}}" method="POST">
+  <form action="/restaurants/{{{restaurants.id}}}?_method=PUT" method="POST">
     <div class="row mb-3">
       <input class="puts col-6" type="text" placeholder="餐廳名字" name="name" value="{{{restaurants.name}}}">
       <input class="puts col-6" type="text" placeholder="料理類別" name="category" value="{{{restaurants.category}}}">
