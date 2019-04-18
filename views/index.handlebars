@@ -1,20 +1,34 @@
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
+    <div class="search-bar-inner row">
+      <form action="/search" class="col-6">
+        <div class="input-group animation">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            aria-describedby="search-button" value={{ keyword }}>
+            value="{{{keyword}}}" aria-describedby="search-button">
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </form>
+      <div class="col-6">
+        <div class="dropdown">
+          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">排序方式</button>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">餐廳評分</a>
+          <a class="dropdown-item" href="#">A -> Z</a>
+          <a class="dropdown-item" href="#">Z -> A</a>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
+
+</div>
+
 
 <!-- restaurant list -->
 <div class="container mt-5">
